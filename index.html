@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Initials Avatar Generator API</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    /*! CSS Used from: https://cdn.oxro.io/css/uikit.min.css */
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    }
+
+    :not(pre)>code {
+        font-family: Consolas, monaco, monospace;
+        font-size: .875rem;
+        color: #f0506e;
+        white-space: nowrap;
+        padding: 2px 6px;
+        background: #f8f8f8;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    p {
+        margin: 0 0 20px 0;
+    }
+
+    *+p {
+        margin-top: 20px;
+    }
+
+    .oxro-h2,
+    .oxro-h3,
+    .oxro-h4,
+    h2 {
+        margin: 0 0 20px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-weight: 400;
+        color: #333;
+        text-transform: none;
+    }
+
+    *+.oxro-h3,
+    *+.oxro-h4,
+    *+h2 {
+        margin-top: 40px;
+    }
+
+    .oxro-h2,
+    h2 {
+        font-size: 1.7rem;
+        line-height: 1.3;
+    }
+
+    .oxro-h3 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+    }
+
+    .oxro-h4 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    @media (min-width:960px) {
+
+        .oxro-h2,
+        h2 {
+            font-size: 2rem;
+        }
+    }
+
+    hr {
+        overflow: visible;
+        text-align: inherit;
+        margin: 0 0 20px 0;
+        border: 0;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    *+hr {
+        margin-top: 20px;
+    }
+
+    ::selection {
+        background: #39f;
+        color: #fff;
+        text-shadow: none;
+    }
+
+    .oxro-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    *+.oxro-table {
+        margin-top: 20px;
+    }
+
+    .oxro-table th {
+        padding: 16px 12px;
+        text-align: left;
+        vertical-align: bottom;
+        font-size: .875rem;
+        font-weight: 400;
+        color: #999;
+        text-transform: uppercase;
+    }
+
+    .oxro-table td {
+        padding: 16px 12px;
+        vertical-align: top;
+    }
+
+    .oxro-table tbody tr {
+        transition: background-color .1s linear;
+    }
+
+    .oxro-container {
+        box-sizing: content-box;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    @media (min-width:640px) {
+        .oxro-container {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    @media (min-width:960px) {
+        .oxro-container {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+
+    .oxro-container::after,
+    .oxro-container::before {
+        content: "";
+        display: table;
+    }
+
+    .oxro-container::after {
+        clear: both;
+    }
+
+    .oxro-container>:last-child {
+        margin-bottom: 0;
+    }
+
+    .oxro-container-small {
+        max-width: 900px;
+    }
+
+    .oxro-label {
+        display: inline-block;
+        padding: 0 10px;
+        background: #1e87f0;
+        line-height: 1.5;
+        font-size: .875rem;
+        color: #fff;
+        vertical-align: middle;
+        white-space: nowrap;
+        border-radius: 2px;
+        text-transform: uppercase;
+    }
+
+    .oxro-text-muted {
+        color: #999 !important;
+    }
+
+    .oxro-text-emphasis {
+        color: #333 !important;
+    }
+
+    .oxro-position-relative {
+        position: relative !important;
+    }
+
+    @media print {
+
+        *,
+        ::after,
+        ::before {
+            background: 0 0 !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        img,
+        tr {
+            page-break-inside: avoid;
+        }
+
+        img {
+            max-width: 100% !important;
+        }
+
+        h2,
+        p {
+            orphans: 3;
+            widows: 3;
+        }
+
+        h2 {
+            page-break-after: avoid;
+        }
+    }
+
+    /*! CSS Used from: Embedded */
+    .oxro-h2,
+    .oxro-h3,
+    .oxro-h4 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #ccc;
+    }
+
+    p {
+        color: #a0a2a4;
+    }
+
+    .oxro-text-emphasis {
+        color: #dbdddf !important;
+    }
+
+    .oxro-label {
+        background: #3F51B5;
+    }
+
+    code {
+        width: auto !important;
+        height: auto !important;
+        padding: .2em;
+        margin: -.2em 0;
+        border-radius: 3px;
+        font-size: 85%;
+        font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
+        text-indent: 0;
+        border: none;
+        background: #222226 !important;
+        color: #b3b5b6 !important;
+    }
+
+    hr {
+        border-top: 1px solid #6a6a6a;
+        opacity: 0.3;
+    }
+
+    td {
+        color: #a0a2a4 !important;
+    }
+
+    .oxro-h2,
+    .oxro-h1,
+    .oxro-h3,
+    .oxro-h4 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #ccc;
+    }
+
+    p {
+        color: #a0a2a4;
+    }
+
+    .oxro-text-emphasis {
+        color: #dbdddf !important;
+    }
+
+    .oxro-label {
+        background: #3F51B5;
+    }
+
+    html {
+        background: #313339;
+    }
+
+    code {
+        width: auto !important;
+        height: auto !important;
+        padding: .2em;
+        margin: -.2em 0;
+        border-radius: 3px;
+        font-size: 85%;
+        font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
+        text-indent: 0;
+        border: none;
+        background: #222226 !important;
+        color: #b3b5b6 !important;
+    }
+
+    hr {
+        border-top: 1px solid #6a6a6a;
+        opacity: 0.3;
+    }
+
+    td {
+        color: #a0a2a4 !important;
+    }
+
+    .oxro-table-striped tbody tr:nth-of-type(2n+1),
+    .oxro-table-striped>tr:nth-of-type(2n+1) {
+        border-bottom: 0px;
+    }
+
+    .oxro-table-striped tbody tr:nth-of-type(2n+1),
+    .oxro-table-striped>tr:nth-of-type(2n+1) {
+        border-top: 0px;
+    }
+
+    .oxro-table-striped tbody tr:nth-of-type(2n+1),
+    .oxro-table-striped>tr:nth-of-type(2n+1) {
+        background: #2b2c31;
+    }
+
+    a {
+        text-decoration: none;
+        color: #576BD7;
+    }
+
+    a:hover {
+        color: #3F51B5;
+    }
+</style>
+
+
+<body>
+    <div class="oxro-container oxro-container-small oxro-position-relative">
+        <div>
+            <!---->
+            <div style="margin-top: 30px;">
+                <h2 class="oxro-h2">Introduction</h2>
+                <p class="oxro-h4">Get familiar with our free and <a href="https://github.com/eddiejibson/avatars">open source</a> avatar generator API.</p>
+
+                <p>From one GET request, an avatar will be returned (in SVG format) with the initials of the name
+                    provided. Such a URL is fit to put in an
+                    <code class="inline">&lt;img&gt;</code> tag with ease. With no rate-limiting or tracking and an excellent up-time record with speedy responses, this tool works great in production, too. If you don't believe us and want to run it for yourself, you can find the ridiculously simple code on <a href="https://github.com/eddiejibson/avatars">GitHub</a> (This page aswell!). Just don't forget to give us credit, eh?</p>
+
+                <hr style="margin-top:5px;">
+                <h2 class="oxro-h3">Examples</h2>
+                <p><span class="oxro-label">GET</span> <span
+                        class="oxro-text-muted">https://avatar.oxro.io</span>/avatar.svg<span
+                        class="oxro-text-emphasis">?name=Eddie&background=f39c12&length=1</span></p>
+                <div style="display:flex;flex-direction:row;align-items: center;">
+                    <img style="width:50px;height:50px;"
+                        src="https://avatar.oxro.io/avatar.svg?name=Eddie+Jibson&background=f39c12&length=1">
+                    <p style="margin:0;margin-left:7px;">Returns an SVG avatar with the background color specified in
+                        the hex #f39c12 and the
+                        intial "E" (specified one)</p>
+                </div>
+                <p><span class="oxro-label">GET</span><span class="oxro-text-muted"></span>
+                    https://avatar.oxro.io</span>/avatar.svg<span
+                        class="oxro-text-emphasis">?name=John+Smith&background=FFED8B&color=000</span></p>
+                <div style="display:flex;flex-direction:row;align-items: center;">
+                    <img style="width:50px;height:50px;"
+                        src="https://avatar.oxro.io/avatar.svg?name=John+Smith&background=FFED8B&color=000">
+                    <p style="margin:0;margin-left:7px;">Returns an SVG avatar with the background color specified in
+                        the hex #f39c12 and the
+                        intials "JS"</p>
+                </div>
+                <p><span class="oxro-label">GET</span> <span class="oxro-text-muted"></span>
+                    https://avatar.oxro.io</span>/avatar.svg<span
+                        class="oxro-text-emphasis">?name=Eddie&background=ff6b6b&caps=3&bold=true</span></p>
+                <div style="display:flex;flex-direction:row;align-items: center;">
+                    <img style="width:50px;height:50px;" src="https://avatar.oxro.io/avatar.svg?name=Eddie&background=ff6b6b&caps=3&bold=true">
+                    <p style="margin:0;margin-left:7px;">Returns an SVG avatar with a random background color and the
+                        intials "Ed" (respective capitalization) in the bold version of the font.</p>
+                </div>
+                <p>Example within img tag: <code class="inline">&lt;img
+                        src="https://avatar.oxro.io/avatar.svg?name=Eddie"&gt;</code></p>
+
+                <hr style="margin-top:30px;">
+                <h2 class="oxro-h3">Parameters</h2>
+                <table class="oxro-table">
+                    <thead>
+                        <tr>
+                            <th>Query</th>
+                            <th>Explaination</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>The name/username/email of the entity you want the avatar's initials to represent</td>
+                            <td>O</td>
+                        </tr>
+                        <tr>
+                            <td>length</td>
+                            <td>How many initials should be present in the avatar? (either 1 or 2)</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>background</td>
+                            <td>The background color of the avatar (without the # in a hex) e.g #fff becomes fff</td>
+                            <td>Random</td>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>The text color of the avatar (without the # in a hex) e.g #fff becomes fff</td>
+                            <td>fff</td>
+                        </tr>
+                        <tr>
+                            <td>bold</td>
+                            <td>Should the bold version of the font be utilized?</td>
+                            <td>false</td>
+                        </tr>
+                         <tr>
+                            <td>fontSize</td>
+                            <td>The font size for the initials in pixels.</td>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <td>height</td>
+                            <td>The height of the avatar in pixels</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>width</td>
+                            <td>The width of the avatar in pixels</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>caps</td>
+                            <td>Capitalization of the letter(s). 3 for leaving such as provided, 2 for all lowercase or 1 for all uppercase.</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr style="margin-top:30px;">
+                <p>Developed by <a href="https://jibson.me">Edward Jibson</a>, Colors chosen by <a href="https://twitter.com/ceciliallee/">Cecilia Lee</a>.</p>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
