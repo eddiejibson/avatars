@@ -1,13 +1,14 @@
 <?php
 //Why would we ever need to use an image generation library? All done in less than 40 lines of code...
+mb_internal_encoding("UTF-8");
 header('Content-type: image/svg+xml');
 $name = $_GET["name"] ?? "O";
 $length = $_GET["length"] ?? 2;
-$letters = substr($name, 0, $length);
-if ($length > 1 && strlen($name) > 2 && strpos($name, " ") < strlen($name)) {
-    $letters = substr($name, 0, 1) . substr($name, strpos($name, " ") + 1, 1);
+$letters = grapheme_substr($name, 0, $length);
+if ($length > 1 && grapheme_strlen($name) > 2 && grapheme_strpos($name, " ") < grapheme_strlen($name)) {
+    $letters = grapheme_substr($name, 0, 1) . grapheme_substr($name, grapheme_strpos($name, " ") + 1, 1);
 } else {
-    $letters = substr($name, 0, $length);
+    $letters = grapheme_substr($name, 0, $length);
 }
 if (empty($_GET["background"])) {
     //If not set or defined, pick a random sexy color.
@@ -23,9 +24,9 @@ if (empty($_GET["color"])) {
     $color = "#".$_GET["color"];
 }
 if (empty($_GET["caps"]) || $_GET["caps"] == "1") {
-    $letters = strtoupper($letters);
+    $letters = mb_strtoupper($letters);
 } else if ($_GET["caps"] == "2") {
-    $letters = strtolower($letters);
+    $letters = mb_strtolower($letters);
 }
 $width = $_GET["width"] ?? "500";
 $height = $_GET["height"] ?? "500";
