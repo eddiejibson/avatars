@@ -3,16 +3,16 @@
 mb_internal_encoding("UTF-8");
 header('Content-type: image/svg+xml');
 // Input validation
-$background = ($_GET["background"] && ctype_xdigit($_GET["background"]) && strlen($_GET["background"])==6) ? "#".$_GET["background"] : null;
-$color = ($_GET["color"] && ctype_xdigit($_GET["color"]) && strlen($_GET["color"])==6) ? "#".$_GET["color"] : "#fff";
-$name = $_GET["name"] ? filter_var($_GET["name"], FILTER_SANITIZE_STRING) : "O";
-$length = $_GET["length"] ? intval($_GET["length"]) : 2;
-$width = $_GET["width"] ? intval($_GET["width"]) : "500";
-$height = $_GET["height"] ? intval($_GET["height"]) "500";
-$font_size = $_GET["fontSize"] ? intval($_GET["fontSize"]) : "250";
-$capitalize = ($_GET["caps"] && $_GET["caps"]=="1") ? true : false;
-$lowercase = ($_GET["caps"] && $_GET["caps"]=="2") ? true : false;
-$bold = $_GET["bold"] ? true : false;
+$background = (isset($_GET["background"]) && ctype_xdigit($_GET["background"]) && strlen($_GET["background"])==6) ? "#".$_GET["background"] : null;
+$color = (isset($_GET["color"]) && ctype_xdigit($_GET["color"]) && strlen($_GET["color"])==6) ? "#".$_GET["color"] : "#fff";
+$name = isset($_GET["name"]) ? filter_var($_GET["name"], FILTER_SANITIZE_STRING) : "O";
+$length = isset($_GET["length"]) ? intval($_GET["length"]) : 2;
+$width = isset($_GET["width"]) ? intval($_GET["width"]) : "500";
+$height = isset($_GET["height"]) ? intval($_GET["height"]) "500";
+$font_size = isset($_GET["fontSize"]) ? intval($_GET["fontSize"]) : "250";
+$capitalize = (isset($_GET["caps"]) && $_GET["caps"]=="1") ? true : false;
+$lowercase = (isset($_GET["caps"]) && $_GET["caps"]=="2") ? true : false;
+$bold = isset($_GET["bold"]) ? true : false;
 
 $letters = grapheme_substr($name, 0, $length);
 if ($length > 1 && grapheme_strlen($name) > 2 && grapheme_strpos($name, " ") < grapheme_strlen($name)) {
