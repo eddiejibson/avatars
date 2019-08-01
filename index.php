@@ -12,7 +12,7 @@ $height = isset($_GET["height"]) ? intval($_GET["height"]) : "500";
 $font_size = isset($_GET["fontSize"]) ? intval($_GET["fontSize"]) : "250";
 $capitalize = (isset($_GET["caps"]) && $_GET["caps"] == "1") ? true : false;
 $lowercase = (isset($_GET["caps"]) && $_GET["caps"] == "2") ? true : false;
-$bold = isset($_GET["bold"]) ? true : false;
+$bold = (isset($_GET["bold"]) && $_GET["bold"] == "true") ? true : false;
 
 $letters = grapheme_substr($name, 0, $length);
 if ($length > 1 && grapheme_strlen($name) > 2 && grapheme_strpos($name, " ") < grapheme_strlen($name)) {
