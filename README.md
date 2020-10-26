@@ -1,5 +1,5 @@
 <div align="center">
-<a href="https://github.com/eddiejibson/avatars"><img alt="avatars.oxro.io" src="icon.png"></a>
+<a href="https://avatars.oxro.io"><img alt="avatars.oxro.io" src="icon.png"></a>
 <h4><a href="https://avatars.oxro.io">Read the documentation and access the free hosted API service</a></h4>
 </div>
 
