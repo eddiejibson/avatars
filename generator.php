@@ -10,7 +10,7 @@ $length = isset($_GET["length"]) ? intval($_GET["length"]) : 2;
 $width = isset($_GET["width"]) ? intval($_GET["width"]) : "500";
 $height = isset($_GET["height"]) ? intval($_GET["height"]) : "500";
 $font_size = isset($_GET["fontSize"]) ? intval($_GET["fontSize"]) : "250";
-$rounded = isset($_GET["rounded"]) ? intval($_GET["rounded"]) : (isset($_GET["isRounded"]) && $_GET["isRounded"] == "true") ? "50" : "0";
+$rounded = isset($_GET["rounded"]) ? $_GET["rounded"] : ((isset($_GET["isRounded"]) && $_GET["isRounded"] == "true") ? "50" : "0");
 $capitalize = (isset($_GET["caps"]) && $_GET["caps"] == "1") ? true : false;
 $lowercase = (isset($_GET["caps"]) && $_GET["caps"] == "2") ? true : false;
 $bold = (isset($_GET["bold"]) && $_GET["bold"] == "true") ? true : false;
