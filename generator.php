@@ -10,7 +10,8 @@ $length = isset($_GET["length"]) ? intval($_GET["length"]) : 2;
 $width = isset($_GET["width"]) ? intval($_GET["width"]) : "500";
 $height = isset($_GET["height"]) ? intval($_GET["height"]) : "500";
 $font_size = isset($_GET["fontSize"]) ? intval($_GET["fontSize"]) : "250";
-$rounded = isset($_GET["rounded"]) ? intval($_GET["rounded"]) : "0";
+$rounded = isset($_GET["rounded"]) ? intval($_GET["rounded"]) : null;
+$isRounded = (isset($_GET["isRounded"]) && $_GET["isRounded"] == "1") ? true : false;
 $capitalize = (isset($_GET["caps"]) && $_GET["caps"] == "1") ? true : false;
 $lowercase = (isset($_GET["caps"]) && $_GET["caps"] == "2") ? true : false;
 $bold = (isset($_GET["bold"]) && $_GET["bold"] == "true") ? true : false;
@@ -36,4 +37,4 @@ $style = "";
 if ($bold) {
     $style = "font-weight:700;";
 }
-echo '<svg style="' . $style . '" width="' . (string) $width . 'px" height="' . (string) $height . 'px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">@font-face {font-family: "montserratbold";src: url("https://cdn.oxro.io/fonts/montserrat-bold-webfont.woff2") format("woff2"),url("https://cdn.oxro.io/fonts/montserrat-bold-webfont.woff") format("woff");font-weight: normal;font-style: normal;}</style></defs><rect x="0" y="0" width="500" height="500" rx="' . (string) $rounded .'" style="fill:' . $background . '"/><text x="50%" y="50%" dy=".1em" fill="' . $color . '" text-anchor="middle" dominant-baseline="middle" style="font-family: &quot;Montserrat&quot;, sans-serif; font-size: ' . (string) $font_size . 'px; line-height: 1">' . $letters . '</text></svg>';
+echo '<svg style="' . $style . '" width="' . (string) $width . 'px" height="' . (string) $height . 'px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">@font-face {font-family: "montserratbold";src: url("https://cdn.oxro.io/fonts/montserrat-bold-webfont.woff2") format("woff2"),url("https://cdn.oxro.io/fonts/montserrat-bold-webfont.woff") format("woff");font-weight: normal;font-style: normal;}</style></defs><rect x="0" y="0" width="500" height="500" rx="' . $rounded ? (string) $rounded : $isRounded ? '50px' : '0' .'" style="fill:' . $background . '"/><text x="50%" y="50%" dy=".1em" fill="' . $color . '" text-anchor="middle" dominant-baseline="middle" style="font-family: &quot;Montserrat&quot;, sans-serif; font-size: ' . (string) $font_size . 'px; line-height: 1">' . $letters . '</text></svg>';
