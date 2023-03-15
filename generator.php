@@ -23,7 +23,7 @@ if ($length > 1 && grapheme_strlen($name) > 2 && grapheme_strpos($name, " ") < g
 }
 if (!$background) {
     //If not set or defined, pick a random sexy color.
-    $colors = ["#E284B3", "#FFED8B",  "#681313", "#F3C1C6",  "#735372",  "#009975", "#FFBD39", "#B1E8ED", "#52437B", "#F76262", "#216583", "#293462", "#DD9D52", "#936B93", "#6DD38D", "#888888", "#6F8190", "#BCA0F0", "#AAF4DD", "#96C2ED", "#3593CE", "#5EE2CD", "#96366E", "#E38080"];
+    $colors = $colors = ['#e53935', '#d81b60', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#039be5', '#00acc1', '#00897b', '#43a047', '#7cb342', '#c0ca33', '#fdd835', '#ffb300', '#fb8c00', '#f4511e', '#6d4c41', '#757575', '#546e7a'];
     $random_color_key = array_rand($colors, 1);
     $background = $colors[$random_color_key];
 }
