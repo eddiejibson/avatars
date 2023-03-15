@@ -1,5 +1,5 @@
 <?php
-//Why would we ever need to use an image generation library? All done in less than 40 lines of code...
+//Why would we ever need to use an image generation library? All done in less than 50 lines of code...
 mb_internal_encoding("UTF-8");
 header('Content-type: image/svg+xml');
 // Input validation
