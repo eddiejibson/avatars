@@ -15,12 +15,22 @@ $capitalize = (isset($_GET["caps"]) && $_GET["caps"] == "1") ? true : false;
 $lowercase = (isset($_GET["caps"]) && $_GET["caps"] == "2") ? true : false;
 $bold = (isset($_GET["bold"]) && $_GET["bold"] == "true") ? true : false;
 
-$letters = grapheme_substr($name, 0, $length);
-if ($length > 1 && grapheme_strlen($name) > 2 && grapheme_strpos($name, " ") < grapheme_strlen($name)) {
-    $letters = grapheme_substr($name, 0, 1) . grapheme_substr($name, grapheme_strpos($name, " ") + 1, 1);
+$letters = '';
+$words = preg_split('/[\s-]+/', $name);
+if ($length == 1) {
+    $words = [$words[0]];
 } else {
-    $letters = grapheme_substr($name, 0, $length);
+    array_splice($words, $length - 1, count($words) - $length);
 }
+foreach ($words as $word) {
+    if (ctype_digit($word) && strlen($word) == 1) {
+        $letters .= $word;
+    } else {
+        $first = grapheme_substr($word, 0, 1);
+        $letters .= ctype_digit($first) ? '' : $first;
+    }
+}
+
 if (!$background) {
     //If not set or defined, pick a random sexy color.
     $colors = $colors = ['#e53935', '#d81b60', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#039be5', '#00acc1', '#00897b', '#43a047', '#7cb342', '#c0ca33', '#fdd835', '#ffb300', '#fb8c00', '#f4511e', '#6d4c41', '#757575', '#546e7a'];
